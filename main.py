@@ -1,46 +1,27 @@
 import os
 import matplotlib as plt
 
-#zliczanie liter
-def count_letters(text):
-    quantity = {}
-    for char in text:
-        if char.isalpha():
-            char = char.lower()
-            if char in quantity:
-                quantity[char] += 1
-            else:
-                quantity[char] = 1
-    return quantity
+text = 'dzien dobry piotruciu nie dawaj sie, dzien dobry piotrusiu badz dzielny'
 
-#tworzenie wykresu
-def draw_histogram(quantity):
-    letters = list(quantity.keys())
-    occurrences = list(quantity.values())
+letters = 'abcdefghijklmnopqrstuvwxyz'
 
-    plt.bar(letters, occurrences)
-    plt.xlabel('litery')
-    plt.ylabel('il. wystapien')
-    plt.title("HISTOGRAM")
-    plt.show()
+letters_dictionary = {letter: 0 for letter in letters}
 
-#funkcja do wpisywania lokalizacji pliku
-def load_file(filename):
-    if os.path.exists(filename):
-        with open(filename, 'r') as file:
-            text = file.read()
-            return text
-    else:
-        return None
+#print(letters_dictionary)
 
-#szukanie wpisanej sciezki
-if __name__ == "__main__":
-    file_path = "C:\\Users\\aleks\Desktop\\tekst1.txt"
+for char in text.lower():
+    if char in letters:
+        letters_dictionary[char] += 1
 
-    text = load_file(file_path)
+'''total_num_letter = 0
+for letter in letters:
+    total_num_letter += letters_dictionary[letter]'''
 
-    if text is not None:
-        letter_quantity = count_letters(text)
-        draw_histogram(letter_quantity)
-    else:
-        print("Plik nie został znaleziony.")
+total_num_letters = sum(letters_dictionary.values())
+sorted_pairs = sorted([(value, key) for (key, value) in letters_dictionary.items()], reverse=True)
+
+#print(sorted_pairs)
+
+for value, letter in sorted_pairs:
+    percentage = 100*value/total_num_letters
+    print(f'{letter}:{value}\t({percentage:.2f}%)')
