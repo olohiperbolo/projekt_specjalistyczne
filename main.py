@@ -16,9 +16,9 @@ def count_letters(text):
 #tworzenie wykresu
 def draw_histogram(quantity):
     letters = list(quantity.keys())
-    occurences = list(quantity.values())
+    occurrences = list(quantity.values())
 
-    plt.bar(letters, occurences)
+    plt.bar(letters, occurrences)
     plt.xlabel('litery')
     plt.ylabel('il. wystapien')
     plt.title("HISTOGRAM")
@@ -33,8 +33,9 @@ def load_file(filename):
     else:
         return None
 
+#szukanie wpisanej sciezki
 if __name__ == "__main__":
-    file_path = input("Podaj ścieżkę: ")
+    file_path = "C:\\Users\\aleks\Desktop\\tekst1.txt"
 
     text = load_file(file_path)
 
