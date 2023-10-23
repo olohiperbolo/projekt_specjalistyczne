@@ -27,11 +27,3 @@ with codecs.open('tekst1.txt', 'r', encoding='utf-8') as f:
 
 letter_counts = count_letters(text)
 draw_histogram(letter_counts)
-
-
-'''total_num_letters = sum(letters_dictionary.values())
-sorted_pairs = sorted([(value, key) for (key, value) in letters_dictionary.items()], reverse=True)
-
-for value, letter in sorted_pairs:
-    percentage = 100*value/total_num_letters
-    print(f'{letter}:{value}({percentage:.2f}%)')'''
