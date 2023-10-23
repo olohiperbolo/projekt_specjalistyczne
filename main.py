@@ -1,8 +1,6 @@
 import os
 import matplotlib as plt
 
-quantity = []
-
 #zliczanie liter
 def count_letters(text):
     quantity = {}
@@ -16,7 +14,7 @@ def count_letters(text):
     return quantity
 
 #tworzenie wykresu
-def draw_char(quantity):
+def draw_histogram(quantity):
     letters = list(quantity.keys())
     occurences = list(quantity.values())
 
@@ -28,15 +26,20 @@ def draw_char(quantity):
 
 #funkcja do wpisywania lokalizacji pliku
 def load_file(filename):
-    with open(filename, 'r') as file:
-        text = file.read()
-        return text
+    if os.path.exists(filename):
+        with open(filename, 'r') as file:
+            text = file.read()
+            return text
+    else:
+        return None
+
 if __name__ == "__main__":
     file_path = input("Podaj ścieżkę: ")
 
-    try:
-        text = load_file(file_path)
+    text = load_file(file_path)
+
+    if text is not None:
         letter_quantity = count_letters(text)
-        draw_char(letter_quantity)
-    except FileNotFoundError:
+        draw_histogram(letter_quantity)
+    else:
         print("Plik nie został znaleziony.")
