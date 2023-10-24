@@ -2,7 +2,7 @@ import os
 import matplotlib.pyplot as plt
 import cv2 as cv
 
-choice = input('do czego chcesz histogram: 1 - plik.txt, 2 - zdjecie.jpg: ')
+choice = input('do czego chcesz histogram: (1) - plik.txt, (2) - zdjecie.jpg: ')
 
 file_path = input("Podaj ścieżkę do pliku: ")
 
@@ -27,7 +27,6 @@ if(choice == '1'):
         plt.ylabel('il. wystapien')
         plt.title("HISTOGRAM")
         plt.show()
-
 
     try:
         with open(file_path, 'r') as f:
