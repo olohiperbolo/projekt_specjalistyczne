@@ -1,7 +1,7 @@
-import codecs
 import os
 import matplotlib.pyplot as plt
 
+file_path = input("Podaj ścieżkę do pliku: ")
 def count_letters(text):
     letters = 'aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż'
     letters_dictionary = {letter: 0 for letter in letters}
@@ -22,8 +22,12 @@ def draw_histogram(letters_dict):
     plt.title("HISTOGRAM")
     plt.show()
 
-with codecs.open('tekst1.txt', 'r', encoding='utf-8') as f:
-    text = f.read()
+try:
+    with open(file_path, 'r') as f:
+        text = f.read()
+except FileNotFoundError:
+    print("Błędna ścieżką, bądź plik nie istnieje")
+else:
+    letter_counts = count_letters(text)
+    draw_histogram(letter_counts)
 
-letter_counts = count_letters(text)
-draw_histogram(letter_counts)
