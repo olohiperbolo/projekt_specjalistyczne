@@ -1,22 +1,20 @@
 import os
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
-#zliczanie liter
+file_path = input("Podaj ścieżkę do pliku: ")
 def count_letters(text):
-    quantity = {}
-    for char in text:
-        if char.isalpha():
-            char = char.lower()
-            if char in quantity:
-                quantity[char] += 1
-            else:
-                quantity[char] = 1
-    return quantity
+    letters = 'aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż'
+    letters_dictionary = {letter: 0 for letter in letters}
 
-#tworzenie wykresu
-def draw_histogram(quantity):
-    letters = list(quantity.keys())
-    occurrences = list(quantity.values())
+    for char in text.lower():
+        if char in letters:
+            letters_dictionary[char] += 1
+
+    return letters_dictionary
+
+def draw_histogram(letters_dict):
+    letters = list(letters_dict.keys())
+    occurrences = list(letters_dict.values())
 
     plt.bar(letters, occurrences)
     plt.xlabel('litery')
@@ -24,23 +22,12 @@ def draw_histogram(quantity):
     plt.title("HISTOGRAM")
     plt.show()
 
-#funkcja do wpisywania lokalizacji pliku
-def load_file(filename):
-    if os.path.exists(filename):
-        with open(filename, 'r') as file:
-            text = file.read()
-            return text
-    else:
-        return None
+try:
+    with open(file_path, 'r') as f:
+        text = f.read()
+except FileNotFoundError:
+    print("Błędna ścieżką, bądź plik nie istnieje")
+else:
+    letter_counts = count_letters(text)
+    draw_histogram(letter_counts)
 
-#szukanie wpisanej sciezki
-if __name__ == "__main__":
-    file_path = "C:\\Users\\aleks\Desktop\\tekst1.txt"
-
-    text = load_file(file_path)
-
-    if text is not None:
-        letter_quantity = count_letters(text)
-        draw_histogram(letter_quantity)
-    else:
-        print("Plik nie został znaleziony.")
