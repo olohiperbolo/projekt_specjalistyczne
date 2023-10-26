@@ -21,32 +21,34 @@ def draw_histogram(letters_dict):
     plt.title("HISTOGRAM")
     plt.show()
 
-while True:
-    print('Wybierz opcje')
-    print('1. podaj tekst z klawiatury')
-    print('2. podaj URL')
-    print('3. wyjdź')
+running = True
 
-choice = input('Twoj wybor: ')
+while running:
+    print("Wybierz opcję:")
+    print("1. Podaj tekst")
+    print("2. Przetwórz plik tekstowy")
+    print("3. Wyjdź")
 
-if choice == '1':
-    text = input("Wprowadz tekst: ")
-    letter_counts = count_letters(text)
-    draw_histogram(letter_counts)
+    choice = input("Twój wybór: ")
 
-elif choice == '2':
-    file_path = input("Podaj ścieżkę do pliku: ")
-
-    try:
-        with open(file_path, 'r') as f:
-            text = f.read()
-    except FileNotFoundError:
-        print("Błędna ścieżka, bądź plik nie istnieje")
-    else:
+    if choice == '1':
+        text = input("Wprowadź tekst: ")
         letter_counts = count_letters(text)
         draw_histogram(letter_counts)
-        
-elif choice == '3':
-    break
+
+    elif choice == '2':
+        file_path = input("Podaj ścieżkę do pliku: ")
+
+        try:
+            with open(file_path, 'r') as f:
+                text = f.read()
+        except FileNotFoundError:
+            print("Błędna ścieżka, bądź plik nie istnieje")
+        else:
+            letter_counts = count_letters(text)
+            draw_histogram(letter_counts)
+
+    elif choice == '3':
+        running = False
 else:
-    print('Niepoprawna wartość')
+    print('Niepoprawna wartość. Podaj 1, 2 lub 3:')
