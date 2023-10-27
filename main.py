@@ -7,7 +7,7 @@ choice = input('do czego chcesz histogram: (1) - plik.txt, (2) - zdjecie.jpg: ')
 file_path = input("Podaj ścieżkę do pliku: ")
 
 if(choice == '1'):
-    def count_letters(text):
+    def CoUnT_LeTtErS(text):
         letters = 'aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż'
         letters_dictionary = {letter: 0 for letter in letters}
 
@@ -18,7 +18,7 @@ if(choice == '1'):
         return letters_dictionary
 
 
-    def draw_histogram(letters_dict):
+    def DrAw_HiStOgRaM(letters_dict):
         letters = list(letters_dict.keys())
         occurrences = list(letters_dict.values())
 
