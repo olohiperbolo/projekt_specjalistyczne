@@ -1,7 +1,8 @@
+import os
 import matplotlib.pyplot as plt
 import tkinter as ttk
 
-def count_letters(text):
+def cOUnT_LeTTeRS(text):
     letters = 'aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż'
     letters_dictionary = {letter: 0 for letter in letters}
 
@@ -11,7 +12,7 @@ def count_letters(text):
 
     return letters_dictionary
 
-def draw_histogram(letters_dict):
+def dRAw_HIsTOgRAm(letters_dict):
     letters = list(letters_dict.keys())
     occurrences = list(letters_dict.values())
 
@@ -22,47 +23,47 @@ def draw_histogram(letters_dict):
     plt.show()
 
 running = True
-def menu_window():
-    global root
-    root = ttk.Tk()
-    root.geometry('400x200')
-    frame1 = ttk.Frame(root, width=400, height=100)
-    frame2 = ttk.Frame(root, width=400, height=100)
-    from_text_button = ttk.Button(width= 15,text='Z Podanego tekstu', command=lambda:[frame2.forget, place_entry()])
+def mENUwINdOW():
+    global rOOt
+    rOOt = ttk.Tk()
+    rOOt.geometry('400x200')
+    frame1 = ttk.Frame(rOOt, width=400, height=100)
+    frame2 = ttk.Frame(rOOt, width=400, height=100)
+    from_text_button = ttk.Button(width= 15,text='Z Podanego tekstu', command=lambda:[frame2.forget, pLAcE_EnTRy()])
     from_text_button.place(x=25,y=110)
-    change_file = ttk.Button(width= 16,text='przetworz plik tekstowy',  command=lambda:[frame1.forget, place_entry1()])
+    change_file = ttk.Button(width= 16,text='przetworz plik tekstowy',  command=lambda:[frame1.forget, pLAcE_EnTRy1()])
     change_file.place(x=207,y=110)
-    root.mainloop()
+    rOOt.mainloop()
 
-def place_entry():
-    global frame1,frame2, from_text_entry
-    frame1 = ttk.Frame(root, width=400, height=100)
-    frame2 = ttk.Frame(root, width=400, height=100)
+def pLAcE_EnTRy():
+    global from_text_entry
+    frame1 = ttk.Frame(rOOt, width=400, height=100)
+    frame2 = ttk.Frame(rOOt, width=400, height=100)
     frame1.place(x=0,y=0)
     from_text_entry = ttk.Entry(frame1, width=20, background='white',foreground='black')
     from_text_entry.place(x=103,y=60)
     from_file_label = ttk.Label(frame1, text='Podaj tekst')
     from_file_label.place(x=160, y=25)
-    button = ttk.Button(root, text='Dalej', command=lambda:[from_text()])
-    button.place(x=170, y = 150)
-def place_entry1():
-    global frame1,frame2, from_file_entry
-    frame1 = ttk.Frame(root, width=400, height=100)
-    frame2 = ttk.Frame(root, width=400, height=100)
+    button = ttk.Button(rOOt, text='Narysuj', command=lambda:[fROm_TExT()])
+    button.place(x=160, y=150)
+def pLAcE_EnTRy1():
+    global from_file_entry
+    frame1 = ttk.Frame(rOOt, width=400, height=100)
+    frame2 = ttk.Frame(rOOt, width=400, height=100)
     frame1.place(x=0,y=0)
     from_file_entry = ttk.Entry(frame1, width=20, background='white', foreground='black')
     from_file_entry.place(x=103, y=60)
     from_file_label = ttk.Label(frame1, text='Podaj sciezke pliku')
     from_file_label.place(x=140, y=25)
-    button = ttk.Button(root, text='Dalej', command=lambda:[from_file()])
-    button.place(x=170, y = 150)
+    button = ttk.Button(rOOt, text='Narysuj', command=lambda:[fROm_FIlE()])
+    button.place(x=160, y=150)
 
-def from_text():
+def fROm_TExT():
     text = from_text_entry.get()
-    letter_counts = count_letters(text)
-    draw_histogram(letter_counts)
+    letter_counts = cOUnT_LeTTeRS(text)
+    dRAw_HIsTOgRAm(letter_counts)
 
-def from_file():
+def fROm_FIlE():
     try:
         file_path = from_file_entry.get()
         with open(file_path, 'r') as f:
@@ -70,8 +71,8 @@ def from_file():
     except FileNotFoundError:
         print("Błędna ścieżka, bądź plik nie istnieje")
     else:
-        letter_counts = count_letters(text)
-        draw_histogram(letter_counts)
+        letter_counts = cOUnT_LeTTeRS(text)
+        dRAw_HIsTOgRAm(letter_counts)
 
 
-menu_window()
+mENUwINdOW()
