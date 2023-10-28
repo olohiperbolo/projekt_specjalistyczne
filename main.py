@@ -63,7 +63,6 @@ def from_text():
     draw_histogram(letter_counts)
 
 def from_file():
-    running = True
     try:
         file_path = from_file_entry.get()
         with open(file_path, 'r') as f:
