@@ -20,7 +20,7 @@ def draw_histogram(letters_dict):
     plt.title("HISTOGRAM")
     plt.show()
 
-choice = input('do czego chcesz histogram: (1) - podaj tekst: , (2) - zdjecie.jpg: ')
+choice = input('do czego chcesz histogram: (1) - z podanego tekstu: , (2) - zdjecie.jpg: ')
 
 if choice == '1':
     text = input("Wprowadz tekst: ")
